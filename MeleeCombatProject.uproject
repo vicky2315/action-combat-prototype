@@ -12,7 +12,8 @@
 				"CoreUObject",
 				"Engine",
 				"AIModule",
-				"CommonUI"
+				"CommonUI",
+				"DeveloperSettings"
 			]
 		}
 	],

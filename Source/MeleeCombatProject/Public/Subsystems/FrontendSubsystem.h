@@ -13,6 +13,7 @@
 class UWidget_PrimaryLayout;
 class UWidget_ActivatableBase;
 struct FGameplayTag;
+class UFrontendCommonButtonBase;
 
 enum class EAsyncPushWidgetState : uint8
 {
@@ -20,6 +21,7 @@ enum class EAsyncPushWidgetState : uint8
 	CreatedAfterPush
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnButtonDescriptionTextUpdatedDelegate, UFrontendCommonButtonBase*, BroadcastingButton, FText, DescriptionText);
 
 UCLASS()
 class MELEECOMBATPROJECT_API UFrontendSubsystem : public UGameInstanceSubsystem
@@ -31,6 +33,9 @@ public:
 	
 	//To make sure there is only one instance of this subsystem running
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnButtonDescriptionTextUpdatedDelegate OnButtonDescriptionTextUpdated;
 
 	UFUNCTION(BlueprintCallable)
 	void RegisterPrimaryLayout(UWidget_PrimaryLayout* InCreatedLayout);
